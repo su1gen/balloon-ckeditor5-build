@@ -1,0 +1,78 @@
+{
+  "name": "@scope/ckeditor5-toggle-list",
+  "version": "0.0.1",
+  "description": "A plugin for CKEditor 5.",
+  "keywords": [
+    "ckeditor",
+    "ckeditor5",
+    "ckeditor 5",
+    "ckeditor5-feature",
+    "ckeditor5-plugin",
+    "ckeditor5-dll",
+    "ckeditor5-package-generator"
+  ],
+  "main": "src/index.js",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=5.7.1"
+  },
+  "files": [
+    "lang",
+    "src",
+    "theme",
+    "build",
+    "ckeditor5-metadata.json"
+  ],
+  "dependencies": {
+    "@ckeditor/ckeditor5-editor-balloon": "^30.0.0",
+    "ckeditor5": ">=30.0.0"
+  },
+  "devDependencies": {
+    "@ckeditor/ckeditor5-adapter-ckfinder": "^30.0.0",
+    "@ckeditor/ckeditor5-alignment": "^30.0.0",
+    "@ckeditor/ckeditor5-autoformat": ">=30.0.0",
+    "@ckeditor/ckeditor5-basic-styles": ">=30.0.0",
+    "@ckeditor/ckeditor5-block-quote": ">=30.0.0",
+    "@ckeditor/ckeditor5-ckfinder": "^30.0.0",
+    "@ckeditor/ckeditor5-cloud-services": "^30.0.0",
+    "@ckeditor/ckeditor5-code-block": ">=30.0.0",
+    "@ckeditor/ckeditor5-dev-utils": "^25.4.4",
+    "@ckeditor/ckeditor5-easy-image": "^30.0.0",
+    "@ckeditor/ckeditor5-editor-classic": ">=30.0.0",
+    "@ckeditor/ckeditor5-essentials": ">=30.0.0",
+    "@ckeditor/ckeditor5-heading": ">=30.0.0",
+    "@ckeditor/ckeditor5-horizontal-line": "^30.0.0",
+    "@ckeditor/ckeditor5-image": ">=30.0.0",
+    "@ckeditor/ckeditor5-indent": ">=30.0.0",
+    "@ckeditor/ckeditor5-inspector": "^2.2.2",
+    "@ckeditor/ckeditor5-link": ">=30.0.0",
+    "@ckeditor/ckeditor5-list": ">=30.0.0",
+    "@ckeditor/ckeditor5-media-embed": ">=30.0.0",
+    "@ckeditor/ckeditor5-package-tools": "^1.0.0-beta.1",
+    "@ckeditor/ckeditor5-paragraph": ">=30.0.0",
+    "@ckeditor/ckeditor5-paste-from-office": "^30.0.0",
+    "@ckeditor/ckeditor5-real-time-collaboration": "^30.0.0",
+    "@ckeditor/ckeditor5-table": ">=30.0.0",
+    "@ckeditor/ckeditor5-theme-lark": ">=30.0.0",
+    "@ckeditor/ckeditor5-typing": "^30.0.0",
+    "@ckeditor/ckeditor5-ui": "^30.0.0",
+    "@ckeditor/ckeditor5-upload": ">=30.0.0",
+    "@ckeditor/ckeditor5-watchdog": "^30.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-ckeditor5": ">=3.1.0",
+    "http-server": "^13.0.2",
+    "stylelint": "^13.13.1",
+    "stylelint-config-ckeditor5": ">=2.0.1"
+  },
+  "scripts": {
+    "dll:build": "ckeditor5-package-tools dll:build",
+    "dll:serve": "http-server ./ -o sample/dll.html",
+    "lint": "eslint '**/*.js' --quiet --ignore-pattern 'build/'",
+    "start": "ckeditor5-package-tools start",
+    "stylelint": "stylelint --quiet --allow-empty-input 'theme/**/*.css'",
+    "test": "ckeditor5-package-tools test",
+    "prepare": "yarn run dll:build",
+    "prepublishOnly": "yarn run dll:build"
+  }
+}

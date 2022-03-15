@@ -1,0 +1,19 @@
+.ckeditor-double-columns{
+	display: flex;
+	gap: 15px;
+}
+
+.ckeditor-double-columns__block{
+	flex: 1 1 50%;
+}
+
+@media only screen and (max-width : 768px) {
+	.ckeditor-double-columns{
+		flex-direction: column;
+	}
+	.ckeditor-double-columns__block{
+		flex-basis: 100%;
+	}
+}
+
+

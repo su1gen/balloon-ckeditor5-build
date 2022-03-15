@@ -1,0 +1,69 @@
+.task{
+  /*margin-right: 15px;*/
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.task__top{
+  display: flex;
+  align-items: center;
+}
+
+.task__btn{
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.task__name, .task__user, .task__date{
+  min-width: 50px;
+  max-width: 100%;
+  margin-left: 6px;
+}
+
+.task__date input{
+	outline: none;
+	border: none;
+	background: transparent;
+}
+
+.task__btn:after{
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #4f4f4f;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+}
+
+/*.toggle-list__title{*/
+/*  width: 100%;*/
+/*  margin-left: 6px;*/
+/*}*/
+
+.task__trigger-block, .task__id-block, .task__date span{
+  display: none;
+}
+
+.task__trigger-block.task__trigger-block--hidden ~ .task__description{
+  display: none;
+}
+
+.task__trigger-block.task__trigger-block--hidden ~ .task__top .task__btn{
+  transform: rotate(-90deg);
+}
+
+/*.toggle-list .toggle-list__wrapper{*/
+/*  margin-left: 26px;*/
+/*}*/
