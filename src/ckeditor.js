@@ -31,6 +31,7 @@ import TodoList from '@ckeditor/ckeditor5-list/src/todolist';
 import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
 import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
 import Comments from '@ckeditor/ckeditor5-comments/src/comments';
+import FontSize from "@ckeditor/ckeditor5-font/src/fontsize";
 import FontColor from '@ckeditor/ckeditor5-font/src/fontcolor';
 import FontBackgroundColor from '@ckeditor/ckeditor5-font/src/fontbackgroundcolor';
 
@@ -150,6 +151,7 @@ CollaborationBalloonEditor.builtinPlugins = [
 	TodoList,
 	HorizontalLine,
 	SimpleUploadAdapter,
+	FontSize,
 	FontColor,
 	FontBackgroundColor,
 	Mention,
@@ -190,11 +192,21 @@ CollaborationBalloonEditor.defaultConfig = {
 			'strikethrough',
 			'link',
 			'|',
+			'fontSize',
 			'fontColor',
 			'fontBackgroundColor',
 			'|',
 			'comment',
 			'trackChanges'
+		]
+	},
+	fontSize: {
+		options: [
+			'tiny',
+			'small',
+			'default',
+			'big',
+			'huge'
 		]
 	},
 	fontColor: {
@@ -509,6 +521,7 @@ DefaultBalloonEditor.builtinPlugins = [
 	HorizontalLine,
 	SimpleUploadAdapter,
 	Comments,
+	FontSize,
 	FontColor,
 	FontBackgroundColor,
 	Mention,
@@ -549,10 +562,20 @@ DefaultBalloonEditor.defaultConfig = {
 			'strikethrough',
 			'link',
 			'|',
+			'fontSize',
 			'fontColor',
 			'fontBackgroundColor',
 			'|',
 			'comment'
+		]
+	},
+	fontSize: {
+		options: [
+			'tiny',
+			'small',
+			'default',
+			'big',
+			'huge'
 		]
 	},
 	fontColor: {
