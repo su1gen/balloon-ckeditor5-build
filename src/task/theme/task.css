@@ -27,6 +27,29 @@
   margin-left: 6px;
 }
 
+.task__checkbox{
+	display: none;
+}
+
+.task__description .task__checkbox{
+	display: block;
+	margin-left: auto;
+	margin-right: 16px;
+	background-color: #FFFFFF;
+	border: 2px solid #C4C4C4;
+	border-radius: 3px;
+	width: 15px;
+	height: 15px;
+}
+
+.task__description .task__completed-true ~ .task__top .task__checkbox{
+	background-color: #3C84F0;
+	border-color: #3C84F0;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='8' viewBox='0 0 11 8' fill='none'%3E%3Cpath d='M1.75 3.96875L4.5625 6.78125L9.25 1.15625' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: 30% 40%;
+}
+
 .task__date input{
 	outline: none;
 	border: none;
@@ -47,11 +70,6 @@
   transform-origin: center;
 }
 
-/*.toggle-list__title{*/
-/*  width: 100%;*/
-/*  margin-left: 6px;*/
-/*}*/
-
 .task__trigger-block, .task__id-block, .task__date span{
   display: none;
 }
@@ -64,6 +82,3 @@
   transform: rotate(-90deg);
 }
 
-/*.toggle-list .toggle-list__wrapper{*/
-/*  margin-left: 26px;*/
-/*}*/

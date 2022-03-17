@@ -19,11 +19,12 @@ export default class Inserttaskcommand extends Command {
 function createTask( writer ) {
     const task = writer.createElement( 'task' );
     const taskIdBlock = writer.createElement( 'taskIdBlock');
-    const taskTriggerBlock = writer.createElement( 'taskTriggerBlock', { taskStatus: 'default' } );
+    const taskTriggerBlock = writer.createElement( 'taskTriggerBlock', { taskStatus: 'default' , completed: 'false'} );
     const taskTop = writer.createElement( 'taskTop' );
     const taskBtn = writer.createElement( 'taskBtn' );
     const taskName = writer.createElement( 'taskName' );
     const taskUsers = writer.createElement( 'taskUser' );
+    const taskCheckbox = writer.createElement( 'taskCheckbox' );
 
 
 	let today = new Date();
@@ -52,6 +53,7 @@ function createTask( writer ) {
     writer.append( taskName, taskTop );
     writer.append( taskUsers, taskTop );
     writer.append( taskDate, taskTop );
+    writer.append( taskCheckbox, taskTop );
 
 
     writer.append( taskDateInput, taskTop );

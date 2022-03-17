@@ -33,7 +33,7 @@ export default class Taskediting extends Plugin {
         schema.register('taskTriggerBlock', {
             isLimit: true,
             allowIn: 'task',
-            allowAttributes: [ 'taskStatus' ]
+            allowAttributes: [ 'taskStatus', 'completed' ]
         });
 
         schema.register('taskTop', {
@@ -64,7 +64,12 @@ export default class Taskediting extends Plugin {
 			isObject: true,
 			allowIn: 'taskTop',
 			allowAttributes: [ 'date' ]
+        });
 
+        schema.register('taskCheckbox', {
+			isLimit: true,
+			isObject: true,
+			allowIn: 'taskTop'
         });
 
         schema.register('taskDescription', {
@@ -136,7 +141,8 @@ export default class Taskediting extends Plugin {
             model: 'taskTriggerBlock',
             view: ( modelElement, { writer: viewWriter } ) => {
                 let type = modelElement.getAttribute( 'taskStatus' )
-                return viewWriter.createUIElement('div', {class: `task__trigger-block task__trigger-block--${type}`});
+                let isCompleted = modelElement.getAttribute( 'completed' )
+                return viewWriter.createUIElement('div', {class: `task__trigger-block task__trigger-block--${type} task__completed-${isCompleted}`});
             }
         } );
 
@@ -144,10 +150,11 @@ export default class Taskediting extends Plugin {
             model: 'taskTriggerBlock',
             view: ( modelElement, { writer: viewWriter } ) => {
                 let type = modelElement.getAttribute( 'taskStatus' )
-                return viewWriter.createUIElement('div', {class: `task__trigger-block task__trigger-block--${type}`});
+				let isCompleted = modelElement.getAttribute( 'completed' )
+				return viewWriter.createUIElement('div', {class: `task__trigger-block task__trigger-block--${type} task__completed-${isCompleted}`});
             },
             triggerBy: {
-                attributes: [ 'taskStatus' ]
+                attributes: [ 'taskStatus', 'completed' ]
             }
         } );
 
@@ -302,7 +309,6 @@ export default class Taskediting extends Plugin {
 		conversion.for( 'dataDowncast' ).elementToElement( {
 			model: 'taskDate',
 			view: ( modelElement, { writer: viewWriter } ) => {
-				console.log('dataDowncast')
 				return createDateElement( viewWriter, modelElement )
 			}
 		} );
@@ -310,7 +316,6 @@ export default class Taskediting extends Plugin {
 		conversion.for( 'editingDowncast' ).elementToElement( {
 			model: 'taskDate',
 			view: ( modelElement, { writer: viewWriter } ) => {
-				console.log('editingDowncast')
 				// Create the widget view element.
 				const div = createDateElement( viewWriter, modelElement );
 
@@ -327,6 +332,54 @@ export default class Taskediting extends Plugin {
 				attributes: [ 'date' ]
 			}
 		} );
+
+		// taskCheckbox
+		conversion.for( 'upcast' ).elementToElement( {
+			model: 'taskCheckbox',
+			view: {
+				name: 'div',
+				classes: 'task__checkbox'
+			}
+		} );
+		conversion.for( 'dataDowncast' ).elementToElement( {
+			model: 'taskCheckbox',
+			view: {
+				name: 'div',
+				classes: 'task__checkbox'
+			}
+		} );
+		conversion.for( 'editingDowncast' ).elementToElement( {
+			model: 'taskCheckbox',
+			view: ( modelElement, { writer: viewWriter } ) => {
+
+				let editor = this.editor
+				let lastTrigger = null
+
+				return viewWriter.createUIElement('div',
+					{class: `task__checkbox`}, function (domDocument) {
+						const domElement = this.toDomElement(domDocument);
+						domElement.addEventListener('click', () => {
+							editor.model.change(writer => {
+								for (const ancestor of modelElement.getAncestors()) {
+									for (const child of ancestor.getChildren()) {
+										if (child.is('element', 'taskTriggerBlock')) {
+											lastTrigger = child
+										}
+									}
+								}
+								if (lastTrigger){
+									const isCompleted = lastTrigger.getAttribute('completed');
+									writer.setAttribute('completed', isCompleted === 'false' ? 'true' : 'false', lastTrigger);
+								}
+							})
+						})
+						return domElement
+					})
+
+
+				// return viewWriter.createContainerElement( 'div', { class: 'task__checkbox' } );
+			}
+		} );
     }
 }
 
@@ -338,8 +391,10 @@ const upcastDateBlock = ( viewElement, { writer: viewWriter} ) => {
 
 const upcastTriggerBlock = ( viewElement, { writer } ) => {
 	let type = getTypeFromViewElement( viewElement )
+	let isCompleted = getIsCompletedFromViewElement( viewElement )
 	const triggerBlock = writer.createElement( 'taskTriggerBlock' );
 	writer.setAttribute( 'taskStatus', type, triggerBlock );
+	writer.setAttribute( 'completed', isCompleted, triggerBlock );
 	return triggerBlock;
 };
 
@@ -447,4 +502,13 @@ const getTypeFromViewElement = viewElement => {
         }
     }
     return 'default';
+};
+
+const getIsCompletedFromViewElement = viewElement => {
+    for ( const type of [ 'false', 'true' ] ) {
+        if ( viewElement.hasClass( `task__completed-${ type }` ) ) {
+            return type;
+        }
+    }
+    return 'false';
 };
