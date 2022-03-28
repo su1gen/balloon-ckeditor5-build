@@ -447,7 +447,8 @@ DefaultBalloonEditor.defaultConfig = {
 		toolbar: [
 			'imageStyle:inline',
 			'imageStyle:block',
-			'imageStyle:side',
+			'imageStyle:alignLeft',
+			'imageStyle:alignRight',
 			'|',
 			'toggleImageCaption',
 			'imageTextAlternative'
