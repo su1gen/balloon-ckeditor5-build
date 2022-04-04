@@ -29,7 +29,7 @@ import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 import TodoList from '@ckeditor/ckeditor5-list/src/todolist';
 import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
 import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
-import Comments from '@ckeditor/ckeditor5-comments/src/comments';
+// import Comments from '@ckeditor/ckeditor5-comments/src/comments';
 import FontSize from "@ckeditor/ckeditor5-font/src/fontsize";
 import FontColor from '@ckeditor/ckeditor5-font/src/fontcolor';
 import FontBackgroundColor from '@ckeditor/ckeditor5-font/src/fontbackgroundcolor';
@@ -137,7 +137,7 @@ DefaultBalloonEditor.builtinPlugins = [
 	TodoList,
 	HorizontalLine,
 	SimpleUploadAdapter,
-	Comments,
+	// Comments,
 	FontSize,
 	FontColor,
 	FontBackgroundColor,
@@ -149,8 +149,8 @@ DefaultBalloonEditor.defaultConfig = {
 	blockToolbar: [
 		'heading',
 		'|',
-		'task',
-		'|',
+		// 'task',
+		// '|',
 		'doubleColumns',
 		'|',
 		'bulletedList',
@@ -182,8 +182,8 @@ DefaultBalloonEditor.defaultConfig = {
 			'fontSize',
 			'fontColor',
 			'fontBackgroundColor',
-			'|',
-			'comment'
+			// '|',
+			// 'comment'
 		]
 	},
 	fontSize: {
